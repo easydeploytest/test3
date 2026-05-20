@@ -7,22 +7,22 @@
 
 | Resource | URL |
 |---|---|
-| **Dev** | https://test3-dev.easy-deploy.135.181.177.246.nip.io |
-| **Prod** | https://test3.easy-deploy.135.181.177.246.nip.io |
-| **ArgoCD** | https://argocd.easy-deploy.135.181.177.246.nip.io/applications/test3-dev |
+| **Dev** | https://test3-dev.easy-deploy.172.201.55.71.nip.io |
+| **Prod** | https://test3.easy-deploy.172.201.55.71.nip.io |
+| **ArgoCD** | https://argocd.easy-deploy.172.201.55.71.nip.io/applications/test3-dev |
 | **Grafana dashboard** | https://shanzindlr.grafana.net/d/easydeploy-test3/test3 |
-| **Infisical secrets** | https://infisical.easy-deploy.135.181.177.246.nip.io → project **test3** |
-| **Portal** | https://portal-dev.easy-deploy.135.181.177.246.nip.io |
+| **Infisical secrets** | https://infisical.easy-deploy.172.201.55.71.nip.io → project **test3** |
+| **Portal** | https://portal-dev.easy-deploy.172.201.55.71.nip.io |
 | **GitHub repo** | https://github.com/easydeploytest/test3 |
 
 ## Platform overview
 
-This app runs on **EasyDeploy** — a k3s cluster on Hetzner (IP `135.181.177.246`) managed by:
+This app runs on **EasyDeploy** — a k3s cluster on Hetzner (IP `172.201.55.71`) managed by:
 
 - **ArgoCD** — GitOps continuous delivery. Every push to `main` triggers a deploy to dev. Prod is triggered by a git tag push.
 - **Infisical** — Secret management. All environment variables are stored here, injected into pods automatically. No secrets in git.
 - **Grafana Cloud** — Observability. Metrics, traces, and logs. Requires manual OTel SDK setup in your app (see below).
-- **Docker registry** — Private image registry at `registry.easy-deploy.135.181.177.246.nip.io`.
+- **Docker registry** — Private image registry at `registry.easy-deploy.172.201.55.71.nip.io`.
 
 ## Replacing the template
 
@@ -106,12 +106,12 @@ Prod deploy:
 git tag v1.0.0 && git push origin v1.0.0
   → self-hosted runner re-tags image as v1.0.0
   → commits prod values → ArgoCD syncs test3-prod namespace
-  → prod URL is live: https://test3.easy-deploy.135.181.177.246.nip.io
+  → prod URL is live: https://test3.easy-deploy.172.201.55.71.nip.io
 ```
 
 ## Secrets / environment variables
 
-All secrets are in **Infisical** — https://infisical.easy-deploy.135.181.177.246.nip.io → project **test3**.
+All secrets are in **Infisical** — https://infisical.easy-deploy.172.201.55.71.nip.io → project **test3**.
 
 - Use the **dev** environment for dev pods, **prod** for production.
 - Changes propagate to running pods within ~5 minutes — no redeploy needed.
